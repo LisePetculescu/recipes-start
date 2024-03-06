@@ -8,6 +8,7 @@ import Login from "./security/Login";
 import Layout from "./Layout";
 import Home from "./Home";
 import "./App.css";
+import RecipesLayout from "./recipes/RecipesLayout";
 
 export default function App() {
   //const auth = useAuth();
@@ -16,12 +17,13 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categories/" element={<Categories />} />
-        <Route path="/recipes">
-          <Route index element={<Recipes />} />
+        <Route path="/recipes" element={<RecipesLayout/>}>
+          {/* <Route index element={<Recipes />} /> */}
           <Route path=":id" element={<Recipe />} />
         </Route>
         <Route path="/add" element={<RecipeForm />} />
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<h2>Page Not Found 😒</h2>}/>
         {/* <Route path="/logout" element={<Logout />} /> */}
       </Routes>
     </Layout>

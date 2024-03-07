@@ -10,6 +10,7 @@ import Home from "./Home";
 import "./App.css";
 import RecipesLayout from "./recipes/RecipesLayout";
 import Logout from "./security/Logout";
+import RequireAuth from "./security/RequireAuth";
 // import { useAuth } from "./security/AuthProvider";
 
 export default function App() {
@@ -19,14 +20,21 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categories/" element={<Categories />} />
-        <Route path="/recipes" element={<RecipesLayout/>}>
+        <Route path="/recipes" element={<RecipesLayout />}>
           {/* <Route index element={<Recipes />} /> */}
           <Route path=":id" element={<Recipe />} />
         </Route>
-        <Route path="/add" element={<RecipeForm />} />
+        <Route
+          path="/add"
+          element={
+            <RequireAuth roles={["ADMIN"]}>
+              <RecipeForm />
+            </RequireAuth>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="*" element={<h2>Page Not Found 😒</h2>}/>
+        <Route path="*" element={<h2>Page Not Found 😒</h2>} />
       </Routes>
     </Layout>
   );

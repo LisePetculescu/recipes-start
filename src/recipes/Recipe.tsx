@@ -7,6 +7,7 @@ export default function Recipe() {
   console.log("id", id);
 
   const [recipe, setRecipe] = useState<ApiRecipe | null>(null);
+  
   useEffect(() => {
     getRecipe(Number(id)).then((res) => setRecipe(res));
   }, [id]);
